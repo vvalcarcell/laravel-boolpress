@@ -17,7 +17,7 @@ class PostsTableSeeder extends Seeder
             $post= new Post();
             $post->title= $faker->sentence(5);
             $post->author= $faker->words(2,true);
-            $post->img_path= $faker->imageUrl(360, 360);
+            $post->img_path= $faker->imageUrl(60, 60);
             $post->date= $faker->date();
             $post->save();
 
