@@ -36,7 +36,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'title'=>'required|string|max:150',
+            'author'=>'required|string|max:50',
+            'img_path'=>'required|url'
+        ]);
+        $data= $request->all();
+
+        $post = new Post();
+        $post->title= $data['title'];
+        $post->author= $data['author'];
+        $post->img_path= $data['img_path'];
+        $post->save();
+
+        return redirect()->route('posts.show', $post);
     }
 
     /**

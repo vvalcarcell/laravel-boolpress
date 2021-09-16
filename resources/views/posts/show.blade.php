@@ -5,9 +5,12 @@
 
     <div class="container">
         <h5>Author: {{$post->author}}</h5>
-        <h3>{{ $post->title }}</h3>
+        <h3>Title: {{ $post->title }}</h3>
         <img src="{{ $post->img_path }}" alt="">
         <div class="date">Published on {{ $post->created_at}}</div>
+
+        
+        <a href="{{ route('posts.index') }}"><button type="button" class="btn btn-danger">Go back!</button></a>
     </div>
 
 @endsection
