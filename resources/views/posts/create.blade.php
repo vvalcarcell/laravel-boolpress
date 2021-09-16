@@ -37,6 +37,9 @@
 
 
         </form>
+
+        <a href="{{ route('posts.index') }}"><button type="button" class="btn btn-danger">Go back!</button></a>
+
     </div>
 
 @endsection

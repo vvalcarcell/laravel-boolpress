@@ -4,6 +4,7 @@
 
 
     <div class="container">
+        <a href="{{route('posts.create')}}"><i class="bi bi-lightbulb"></i> Add Post!</a>
         <table class="table">
             <thead>
             <tr>
