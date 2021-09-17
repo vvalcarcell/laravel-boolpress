@@ -13,7 +13,7 @@
                 <th scope="col">Author</th>
                 <th scope="col">Date</th>
                 <th scope="col">Image</th>
-                <th scope="col">Details</th>
+                <th scope="col">Actions</th>
             </tr>
             </thead>
 
@@ -26,7 +26,20 @@
                         <td>{{ $post->author }}</td>
                         <td>{{ $post->created_at }}</td>
                         <td><img src="{{ $post->img_path }}" alt="cover of {{ $post->title }}"></td>
-                        <td><a href="{{ route('posts.show', $post)}}"><i class="bi bi-zoom-in"></i></a></td>
+                        <td>
+                            <a href="{{ route('posts.show', $post)}}">
+                                <button type="button" class="btn btn-primary"><i class="bi bi-zoom-in"></i></button>                                
+                            </a>
+                            <a href="{{ route('posts.edit', $post)}}">
+                                <button type="button" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>                               
+                            </a>
+                            <!-- <a href="{{ route('posts.destroy', $post)}}"><i class="bi bi-trash"></i></a> -->
+                            <form action="{{route('posts.destroy', $post)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </td>
                     </tr>                   
                 @endforeach
 

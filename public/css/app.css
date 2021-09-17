@@ -12341,3 +12341,10 @@ form {
   margin-bottom: 20px;
 }
 
+.btn {
+  padding: 0;
+  padding-right: 4px;
+  padding-left: 4px;
+  margin-bottom: 2px;
+}
+
