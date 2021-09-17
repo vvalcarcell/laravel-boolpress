@@ -4,6 +4,7 @@
 
 
     <div class="container">
+
         <a href="{{route('posts.create')}}"><i class="bi bi-lightbulb"></i> Add Post!</a>
         <table class="table">
             <thead>
@@ -33,12 +34,40 @@
                             <a href="{{ route('posts.edit', $post)}}">
                                 <button type="button" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>                               
                             </a>
-                            <!-- <a href="{{ route('posts.destroy', $post)}}"><i class="bi bi-trash"></i></a> -->
-                            <form action="{{route('posts.destroy', $post)}}" method="POST">
+                            <!-- <form action="{{route('posts.destroy', $post)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                            </form>
+                            </form> -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{$post->id}}"><i class="bi bi-trash"></i></button>
+
+                            <div class="modal fade" id="deleteModal{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">WARNING!</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        The post will be deleted. <br>
+                                        Are you sure?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <form action="{{route('posts.destroy', $post)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+</div>
+
+
+
                         </td>
                     </tr>                   
                 @endforeach

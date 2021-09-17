@@ -85,6 +85,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'title'=>'required|string|max:150',
+            'author'=>'required|string|max:50',
+            'img_path'=>'required|url'
+        ]);
+        
         $data= $request->all();
         $post->update($data);
         return redirect()-> route('posts.show', $post);
