@@ -3,10 +3,11 @@
 @section('content')
 
 
-    <div class="container">
+    <div class="container show">
         <h5>Author: {{$post->author}}</h5>
         <h3>Title: {{ $post->title }}</h3>
         <img src="{{ $post->img_path }}" alt="">
+        <div class="category">Categoria: {{ $post->category->name}}</div>
         <div class="date">Published on {{ $post->created_at}}</div>
 
         

@@ -14,6 +14,11 @@ table img {
     height: 60px;
 }
 
+.show img {
+    max-width: 360px;
+    max-height: 360px;
+}
+
 form {
     margin-bottom: 20px;
 }

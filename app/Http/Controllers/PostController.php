@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -25,7 +26,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -47,6 +49,7 @@ class PostController extends Controller
         $post->title= $data['title'];
         $post->author= $data['author'];
         $post->img_path= $data['img_path'];
+        $post->category_id = $data['category_id'];
         $post->save();
 
         return redirect()->route('posts.show', $post);
