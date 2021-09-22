@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $allPosts= Post::all();
+        $allPosts = Post::all();
         return view('posts.index', compact('allPosts'));
     }
 
@@ -44,16 +44,17 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required|string|max:150',
-            'author'=>'required|string|max:50',
-            'img_path'=>'required|url'
+            'title' => 'required|string|max:150',
+            'author' => 'required|string|max:50',
+            'img_path' => 'required|url'
         ]);
-        $data= $request->all();
+
+        $data = $request->all();
 
         $post = new Post();
-        $post->title= $data['title'];
-        $post->author= $data['author'];
-        $post->img_path= $data['img_path'];
+        $post->title = $data['title'];
+        $post->author = $data['author'];
+        $post->img_path = $data['img_path'];
         $post->category_id = $data['category_id'];
         $post->save();
 
@@ -66,11 +67,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::find($id);
+        // $post = Post::find($id); --> se avessi passato come argomenti l' $id invece dell'oggetto
         return view('posts.show', compact('post'));
-        // dump($post);
     }
 
     /**
@@ -94,14 +94,14 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title'=>'required|string|max:150',
-            'author'=>'required|string|max:50',
-            'img_path'=>'required|url'
+            'title' => 'required|string|max:150',
+            'author' => 'required|string|max:50',
+            'img_path' => 'required|url'
         ]);
-        
-        $data= $request->all();
+
+        $data = $request->all();
         $post->update($data);
-        return redirect()-> route('posts.show', $post);
+        return redirect()->route('posts.show', $post);
     }
 
     /**

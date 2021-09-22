@@ -66,7 +66,7 @@
                         </div>
                     </form>
 
-                    <a href="{{ route('welcome') }}"><button type="button" class="btn btn-danger">Go back Home!</button></a>
+                    <a href="{{ route('home') }}"><button type="button" class="btn btn-danger">Go back Home!</button></a>
                     
 
 
