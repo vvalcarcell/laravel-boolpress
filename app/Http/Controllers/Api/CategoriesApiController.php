@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Post;
 
-class PostApiController extends Controller
+class CategoriesApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class PostApiController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(8);
-        return response()->json($posts);
+        $categories = Category::all();
+        return response()->json($categories);
     }
 
     /**
@@ -80,11 +80,8 @@ class PostApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $post->delete();
-        return response()->json([
-            'response' => 'success'
-        ]);
+        //
     }
 }

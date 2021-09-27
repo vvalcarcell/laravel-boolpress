@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('posts', PostController::class);
+
+Route::get('/app', 'WebAppController@home');

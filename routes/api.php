@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('posts', Api\PostAPiController::class);
+
+Route::resource('categories', Api\CategoriesApiController::class);
