@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -21,7 +23,9 @@ class PostController extends Controller
     public function index()
     {
         $allPosts = Post::all();
-        return view('posts.index', compact('allPosts'));
+        $dateNow = Carbon::now();
+        $isWeekendFlag = $dateNow->isWeekend(); //ritorna un booleano(true o false)
+        return view('posts.index', compact('allPosts', 'dateNow', 'isWeekendFlag'));
     }
 
     /**
@@ -46,7 +50,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:150',
             'author' => 'required|string|max:50',
-            'img_path' => 'required|url'
+            'img_path' => 'required|image'
         ]);
 
         $data = $request->all();
@@ -54,7 +58,9 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $data['title'];
         $post->author = $data['author'];
-        $post->img_path = $data['img_path'];
+        $imgPath = Storage::put('images', $data['img_path']);
+        // dd($imgPath);
+        $post->img_path = $imgPath;
         $post->category_id = $data['category_id'];
         $post->save();
 
@@ -96,7 +102,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:150',
             'author' => 'required|string|max:50',
-            'img_path' => 'required|url'
+            'img_path' => 'required|image'
         ]);
 
         $data = $request->all();

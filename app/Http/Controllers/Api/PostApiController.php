@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostRespurce;
 use Illuminate\Http\Request;
 use App\Post;
 
@@ -16,7 +17,7 @@ class PostApiController extends Controller
     public function index()
     {
         $posts = Post::paginate(8);
-        return response()->json($posts);
+        return PostRespurce::collection($posts);
     }
 
     /**
@@ -46,9 +47,9 @@ class PostApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return new PostRespurce($post);
     }
 
     /**

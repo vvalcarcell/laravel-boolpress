@@ -37724,7 +37724,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "card-text" }, [
-                  _vm._v(_vm._s(post.category_id))
+                  _vm._v(_vm._s(post.category))
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "card-text" }, [

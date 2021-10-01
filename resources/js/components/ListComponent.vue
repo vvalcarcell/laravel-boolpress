@@ -12,7 +12,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ post.title }}</h5>
           <p class="card-text">{{ post.author }}</p>
-          <p class="card-text">{{ post.category_id }}</p>
+          <p class="card-text">{{ post.category }}</p>
           <p class="card-text">Created at: {{ post.created_at }}</p>
           <button
             @click="deleteById(post.id)"
